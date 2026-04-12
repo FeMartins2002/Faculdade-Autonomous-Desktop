@@ -1,12 +1,11 @@
-package br.com.dtos.responses.scale;
+package br.com.entities;
 
-import br.com.entities.Point;
 import br.com.enums.ScaleStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ScaleResponseDTO {
+public class Scale {
     private Long id;
     private ScaleStatus scaleStatus;
     private double scaleValue;
@@ -17,11 +16,11 @@ public class ScaleResponseDTO {
     private String storeName;
     private List<Point> points;
 
-    public ScaleResponseDTO() {
+    public Scale() {
 
     }
 
-    public ScaleResponseDTO(Long id, ScaleStatus scaleStatus, double scaleValue, LocalDateTime scaleDateTime, String scaleObservation, String freelancerName, String managerName, String storeName, List<Point> points) {
+    public Scale(Long id, ScaleStatus scaleStatus, double scaleValue, LocalDateTime scaleDateTime, String scaleObservation, String freelancerName, String managerName, String storeName, List<Point> points) {
         this.id = id;
         this.scaleStatus = scaleStatus;
         this.scaleValue = scaleValue;

@@ -2,7 +2,7 @@ package br.com.services;
 
 import br.com.clients.ScaleClient;
 import br.com.dtos.requests.scale.CreateScaleDTO;
-import br.com.dtos.responses.scale.ScaleResponseDTO;
+import br.com.entities.Scale;
 import br.com.enums.ScaleStatus;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +22,7 @@ public class ScaleService {
         return response.statusCode() == 201;
     }
 
-    public List<ScaleResponseDTO> findByStatus(ScaleStatus status) throws JsonProcessingException {
+    public List<Scale> findByStatus(ScaleStatus status) throws JsonProcessingException {
         return client.findByStatus(status);
     }
 }

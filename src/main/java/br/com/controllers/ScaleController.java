@@ -1,7 +1,7 @@
 package br.com.controllers;
 
 import br.com.dtos.requests.scale.CreateScaleDTO;
-import br.com.dtos.responses.scale.ScaleResponseDTO;
+import br.com.entities.Scale;
 import br.com.enums.ScaleStatus;
 import br.com.services.ScaleService;
 
@@ -20,7 +20,7 @@ public class ScaleController {
         return scaleService.createScale(dto);
     }
 
-    public List<ScaleResponseDTO> findByStatus(ScaleStatus status) throws JsonProcessingException {
+    public List<Scale> findByStatus(ScaleStatus status) throws JsonProcessingException {
         return scaleService.findByStatus(status);
     }
 }

@@ -1,7 +1,7 @@
 package br.com.clients;
 
 import br.com.dtos.requests.scale.CreateScaleDTO;
-import br.com.dtos.responses.scale.ScaleResponseDTO;
+import br.com.entities.Scale;
 import br.com.enums.ScaleStatus;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -43,7 +43,7 @@ public class ScaleClient {
         }
     }
 
-    public List<ScaleResponseDTO> findByStatus(ScaleStatus status) {
+    public List<Scale> findByStatus(ScaleStatus status) {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
@@ -62,7 +62,7 @@ public class ScaleClient {
 
             return mapper.readValue(
                     response.body(),
-                    new TypeReference<List<ScaleResponseDTO>>() {}
+                    new TypeReference<List<Scale>>() {}
             );
 
         } catch (Exception e) {
