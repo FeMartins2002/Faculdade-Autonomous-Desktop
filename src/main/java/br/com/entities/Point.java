@@ -46,6 +46,13 @@ public class Point {
         this.pointDateTime = pointDateTime;
     }
 
+    public String getFormattedPoint() {
+        if (pointDateTime == null) {
+            return "Sem ponto";
+        }
+        return pointDateTime.toLocalTime().toString();
+    }
+
     @Override
     public String toString() {
         return "Point{" +

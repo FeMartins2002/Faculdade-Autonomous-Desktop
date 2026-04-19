@@ -5,6 +5,8 @@ import br.com.services.FreelancerService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import javax.swing.table.DefaultTableModel;
+
 public class FreelancerController {
     private FreelancerService freelancerService;
 
@@ -14,5 +16,13 @@ public class FreelancerController {
 
     public boolean createFreelancer(CreateFreelancerDTO dto) throws JsonProcessingException {
         return freelancerService.createFreelancer(dto);
+    }
+
+    public DefaultTableModel findActives() {
+        return freelancerService.findActives();
+    }
+
+    public DefaultTableModel findInactives() {
+        return freelancerService.findInactives();
     }
 }

@@ -1,13 +1,12 @@
 package br.com.controllers;
 
 import br.com.dtos.requests.scale.CreateScaleDTO;
-import br.com.entities.Scale;
 import br.com.enums.ScaleStatus;
 import br.com.services.ScaleService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class ScaleController {
     private ScaleService  scaleService;
@@ -20,7 +19,7 @@ public class ScaleController {
         return scaleService.createScale(dto);
     }
 
-    public List<Scale> findByStatus(ScaleStatus status) throws JsonProcessingException {
+    public DefaultTableModel findByStatus(ScaleStatus status) throws JsonProcessingException {
         return scaleService.findByStatus(status);
     }
 }
