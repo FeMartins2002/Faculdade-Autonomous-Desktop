@@ -9,11 +9,13 @@ Este repositório contém um sistema desktop desenvolvido em Java para gestão d
 | Pacote | Responsabilidade
 | :- | :- |
 | **`clients`** | Comunicação com a API externa, encapsulando chamadas HTTP e tratamento de respostas|
+| **`configurations`** | Configurações do programa|
 | **`controllers`** | Intermediam as requisições vindas da interface, organizando o fluxo e delegando as ações para os serviços apropriados.|
 | **`dtos`** | Objetos utilizados para transportar dados entre camadas e na comunicação com a API.|
 | **`entities`** | Representações das entidades de domínio, geralmente espelhando a estrutura retornada pela API.|
 | **`enums`** | Definição de constantes tipadas para controle de valores fixos e padronização de regras.|
 | **`services`** | Contêm as regras de negócio da aplicação, coordenando operações e aplicando validações.|
+| **`view`** | Contêm a estrutura da UI do programa feita com Swing.|
 
 ---
 
@@ -28,7 +30,7 @@ Este repositório contém um sistema desktop desenvolvido em Java para gestão d
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/autonomous-desktop.git
+git clone https://github.com/FeMartins2002/Faculdade-Autonomous-Desktop
 
 # Acesse a pasta
 cd autonomous-desktop
