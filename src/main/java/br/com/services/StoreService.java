@@ -6,6 +6,8 @@ import br.com.dtos.requests.store.CreateStoreDTO;
 import br.com.services.utilities.TableModelConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import javax.swing.table.DefaultTableModel;
+
 public class StoreService {
     private StoreClient client;
     private TableModelConverter converter;
@@ -20,6 +22,11 @@ public class StoreService {
 
         var response = client.createStore(dto);
         return response.statusCode() == 201;
+    }
+
+
+    public DefaultTableModel findAll() {
+        return converter.createStoreModel(client.findAll());
     }
 
     private void validateStore(CreateStoreDTO dto) {

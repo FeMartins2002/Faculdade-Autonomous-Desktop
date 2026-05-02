@@ -4,8 +4,11 @@ import br.com.controllers.FreelancerController;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.builders.TextFieldBuilder;
+import br.com.view.utilities.TableFiltering;
+import br.com.view.utilities.TableFormatter;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +18,14 @@ public class FreelancersCard extends JPanel implements ActionListener {
     private JTextField searchBar;
     private JButton addButton, editButton, removeButton;
     private final FreelancerController controller;
+    private TableFiltering filtering;
+    private TableFormatter formatter;
+    private DefaultTableModel model;
+    private JTable table = new JTable();
 
     public FreelancersCard(FreelancerController controller) {
+        filtering = new TableFiltering();
+        formatter = new TableFormatter();
         this.controller = controller;
 
         setBackground(new Color(21, 32, 43));
@@ -60,9 +69,9 @@ public class FreelancersCard extends JPanel implements ActionListener {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         add(searchBar, gbc);
 
-        JTable table = new JTable();
-        JScrollPane scroll = new JScrollPane(table);
+        loadTable();
 
+        JScrollPane scroll = new JScrollPane(table);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 1;
@@ -131,8 +140,26 @@ public class FreelancersCard extends JPanel implements ActionListener {
                 .build();
     }
 
+    private void loadTable() {
+        setUpModel();
+        setUpTable();
+        setupSearchBar();
+    }
+
+    private void setUpModel() {
+        model = controller.findActives();
+    }
+
+    private void setUpTable() {
+        formatter.formatTable(table, model);
+    }
+
+    private void setupSearchBar() {
+        filtering.searchBarConfiguration(model, table, searchBar);
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent click) {
 
     }
 }

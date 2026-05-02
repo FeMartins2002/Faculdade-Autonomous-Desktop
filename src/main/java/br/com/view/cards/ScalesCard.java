@@ -1,11 +1,16 @@
 package br.com.view.cards;
 
 import br.com.controllers.ScaleController;
+import br.com.enums.ScaleStatus;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.builders.TextFieldBuilder;
+import br.com.view.utilities.TableFiltering;
+import br.com.view.utilities.TableFormatter;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +20,14 @@ public class ScalesCard extends JPanel implements ActionListener {
     private JTextField searchBar;
     private JButton addButton, editButton, completedButton, cancelledButton;
     private ScaleController controller;
+    private TableFiltering filtering;
+    private TableFormatter formatter;
+    private DefaultTableModel model;
+    private JTable table = new JTable();
 
     public ScalesCard(ScaleController controller) {
+        filtering = new TableFiltering();
+        formatter = new TableFormatter();
         this.controller = controller;
 
         setBackground(new Color(21, 32, 43));
@@ -66,9 +77,9 @@ public class ScalesCard extends JPanel implements ActionListener {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         add(searchBar, gbc);
 
-        JTable table = new JTable();
-        JScrollPane scroll = new JScrollPane(table);
+        loadTable();
 
+        JScrollPane scroll = new JScrollPane(table);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 1;
@@ -147,6 +158,28 @@ public class ScalesCard extends JPanel implements ActionListener {
                 .fontSize(15)
                 .size(100, 30)
                 .build();
+    }
+
+    private void loadTable() {
+        setUpModel();
+        setUpTable();
+        setupSearchBar();
+    }
+
+    private void setUpModel() {
+        try {
+            model = controller.findByStatus(ScaleStatus.CRIADO);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setUpTable() {
+        formatter.formatTable(table, model);
+    }
+
+    private void setupSearchBar() {
+        filtering.searchBarConfiguration(model, table, searchBar);
     }
 
     @Override

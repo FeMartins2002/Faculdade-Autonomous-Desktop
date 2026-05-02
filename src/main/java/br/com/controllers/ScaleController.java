@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.swing.table.DefaultTableModel;
 
 public class ScaleController {
-    private ScaleService  scaleService;
+    private ScaleService scaleService;
 
     public ScaleController(ScaleService scaleService) {
         this.scaleService = scaleService;
