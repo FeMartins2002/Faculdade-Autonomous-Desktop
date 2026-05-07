@@ -15,7 +15,7 @@ public class ScaleController {
         this.scaleService = scaleService;
     }
 
-    public boolean createScale(CreateScaleDTO dto) throws JsonProcessingException {
+    public boolean createScale(CreateScaleDTO dto) {
         return scaleService.createScale(dto);
     }
 

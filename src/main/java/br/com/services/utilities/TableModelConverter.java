@@ -33,14 +33,13 @@ public class TableModelConverter {
     }
 
     public DefaultTableModel createFreelancerModel(List<Freelancer> freelancers) {
-        String[] columns = {"CPF", "Nome", "E-mail", "Telefone", "Gestor"};
+        String[] columns = {"CPF", "Nome", "E-mail", "Telefone"};
 
         return buildModel(freelancers, columns, f -> new Object[]{
                 f.getCpf(),
                 f.getName(),
                 f.getEmail(),
                 f.getPhone(),
-                f.getManagerName()
         });
     }
 

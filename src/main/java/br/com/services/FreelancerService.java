@@ -1,10 +1,11 @@
 package br.com.services;
 
 import br.com.clients.FreelancerClient;
+import br.com.configurations.Session;
 import br.com.dtos.requests.freelancer.CreateFreelancerDTO;
 
+import br.com.entities.Freelancer;
 import br.com.services.utilities.TableModelConverter;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -12,35 +13,22 @@ public class FreelancerService {
     private FreelancerClient client;
     private TableModelConverter converter;
 
-    public FreelancerService(FreelancerClient client) {
+    public FreelancerService(FreelancerClient client, TableModelConverter converter) {
         this.client = client;
-        converter = new TableModelConverter();
+        this.converter = converter;
     }
 
-    public boolean createFreelancer(CreateFreelancerDTO dto) throws JsonProcessingException {
+    public boolean createFreelancer(CreateFreelancerDTO dto) {
         validateFreelancer(dto);
 
-        var response = client.createFreelancer(dto);
-        return response.statusCode() == 201;
-    }
+        // Correto
+        //dto.setManagerId(Session.getManagerLogged().getId());
 
-    private void validateFreelancer(CreateFreelancerDTO dto) {
-        if (dto == null) {
-            throw new IllegalArgumentException("Freelancer não pode ser nulo");
-        }
+        // Remover depois
+        dto.setManagerId(1L);
 
-        if (dto.getName() == null || dto.getName().isBlank()) {
-            throw new IllegalArgumentException("Nome é obrigatório");
-        }
-
-        /*
-         private Long managerId; <-- Talvez não precise validar / Pendente implementação de buscar gestor logado na aplicação
-         private String cpf;
-         private String name;
-         private String email;
-         private String phone;
-         private String address;
-         */
+        Freelancer created = client.createFreelancer(dto);
+        return created != null && created.getId() != null;
     }
 
     public DefaultTableModel findActives() {
@@ -49,5 +37,27 @@ public class FreelancerService {
 
     public DefaultTableModel findInactives() {
         return converter.createFreelancerModel(client.findInactives());
+    }
+
+    private void validateFreelancer(CreateFreelancerDTO dto) {
+        if (dto == null) {
+            throw new IllegalArgumentException("Freelancer não pode ser nulo");
+        }
+
+        if (dto.getCpf() == null || dto.getCpf().isBlank() || dto.getCpf().length() != 11) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+
+        if (dto.getName() == null || dto.getName().isBlank()) {
+            throw new IllegalArgumentException("Nome é obrigatório");
+        }
+
+        if (dto.getEmail() == null || dto.getEmail().isBlank()) {
+            throw new IllegalArgumentException("E-mail inválido");
+        }
+
+        if (dto.getPhone() == null || dto.getPhone().isBlank()) {
+            throw new IllegalArgumentException("Telefone inválido");
+        }
     }
 }

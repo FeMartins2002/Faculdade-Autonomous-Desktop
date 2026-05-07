@@ -3,8 +3,6 @@ package br.com.controllers;
 import br.com.dtos.requests.freelancer.CreateFreelancerDTO;
 import br.com.services.FreelancerService;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import javax.swing.table.DefaultTableModel;
 
 public class FreelancerController {
@@ -14,7 +12,7 @@ public class FreelancerController {
         this.freelancerService = freelancerService;
     }
 
-    public boolean createFreelancer(CreateFreelancerDTO dto) throws JsonProcessingException {
+    public boolean createFreelancer(CreateFreelancerDTO dto) {
         return freelancerService.createFreelancer(dto);
     }
 

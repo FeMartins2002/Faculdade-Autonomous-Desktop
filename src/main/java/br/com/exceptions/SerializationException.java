@@ -1,6 +1,6 @@
-package br.com.clients.exceptions;
+package br.com.exceptions;
 
-public class SerializationException extends ClientException {
+public class SerializationException extends RuntimeException {
 
     public SerializationException(String message, Throwable cause) {
         super(message, cause);

@@ -1,12 +1,13 @@
 package br.com.services;
 
 import br.com.clients.ManagerClient;
+import br.com.configurations.Session;
 import br.com.dtos.requests.manager.LoginDTO;
-import br.com.entities.Manager;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ManagerService {
+    private Session session;
     private final ManagerClient client;
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -17,18 +18,8 @@ public class ManagerService {
     public boolean login(LoginDTO dto) {
         validateLogin(dto);
 
-        var response = client.login(dto);
-
-        if (response.statusCode() == 200) {
-            try {
-                Manager manager = mapper.readValue(response.body(), Manager.class);
-                return true;
-            } catch (Exception e) {
-                throw new RuntimeException("Erro ao converter Manager", e);
-            }
-        }
-
-        return false;
+        Session.setManager(client.login(dto));
+        return true;
     }
 
     private void validateLogin(LoginDTO dto) {
