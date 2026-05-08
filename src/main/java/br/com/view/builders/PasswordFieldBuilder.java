@@ -60,6 +60,41 @@ public class PasswordFieldBuilder {
         return this;
     }
 
+    public PasswordFieldBuilder required(boolean required) {
+        if (required) {
+            Border redBorder = BorderFactory.createLineBorder(Color.RED, 2);
+            Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 2);
+
+            field.setBorder(redBorder);
+
+            field.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+                private void updateBorder() {
+                    if (field.getText().trim().isEmpty()) {
+                        field.setBorder(redBorder);
+                    } else {
+                        field.setBorder(greenBorder);
+                    }
+                }
+
+                @Override
+                public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+
+                @Override
+                public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+
+                @Override
+                public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+            });
+        }
+        return this;
+    }
+
     public JPasswordField build() {
         return field;
     }

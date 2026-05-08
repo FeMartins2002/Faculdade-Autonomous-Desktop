@@ -4,6 +4,7 @@ import br.com.controllers.FreelancerController;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.builders.TextFieldBuilder;
+import br.com.view.forms.FreelancerForm;
 import br.com.view.utilities.TableFiltering;
 import br.com.view.utilities.TableFormatter;
 
@@ -16,7 +17,7 @@ import java.awt.event.ActionListener;
 public class FreelancersCard extends JPanel implements ActionListener {
     private JLabel searchLabel;
     private JTextField searchBar;
-    private JButton addButton, editButton, removeButton;
+    private JButton addButton, editButton, removeButton, refreshButton;
     private final FreelancerController controller;
     private TableFiltering filtering;
     private TableFormatter formatter;
@@ -28,8 +29,8 @@ public class FreelancersCard extends JPanel implements ActionListener {
         formatter = new TableFormatter();
         this.controller = controller;
 
-        setBackground(new Color(21, 32, 43));
         setLayout(new GridBagLayout());
+        setBackground(new Color(21, 32, 43));
         GridBagConstraints gbc = new GridBagConstraints();
 
         buildComponents();
@@ -86,6 +87,7 @@ public class FreelancersCard extends JPanel implements ActionListener {
         buildAddButton();
         buildEditButton();
         buildRemoveButton();
+        buildRefreshButton();
         buildSearchLabel();
         buildSearchBar();
     }
@@ -121,6 +123,11 @@ public class FreelancersCard extends JPanel implements ActionListener {
                 .opaque(true)
                 .build();
         removeButton.addActionListener(this);
+    }
+
+    private void buildRefreshButton() {
+        refreshButton = new JButton();
+        refreshButton.addActionListener(this);
     }
 
     private void buildSearchLabel() {
@@ -160,6 +167,12 @@ public class FreelancersCard extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent click) {
+        if(click.getSource() == addButton) {
+            new FreelancerForm(controller, refreshButton);
+        }
 
+        if(click.getSource() == refreshButton) {
+            loadTable();
+        }
     }
 }

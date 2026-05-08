@@ -1,48 +1,61 @@
 package br.com.view.windows;
 
+import br.com.view.panels.HeaderPanel;
 import br.com.view.panels.MainPanel;
 import br.com.view.panels.MenuPanel;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class HomeWindow extends JFrame {
+    private HeaderPanel headerPanel;
     private MenuPanel menuPanel;
     private MainPanel mainPanel;
 
-    public HomeWindow() throws JsonProcessingException {
+    public HomeWindow() {
         setTitle("Home");
         setSize(1500, 800);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(new Color(40, 40, 40));
+        getContentPane().setBackground(new Color(21, 32, 43));
+        getContentPane().setLayout(new GridBagLayout());
         setResizable(true);
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        getContentPane().setLayout(new GridBagLayout());
-
+        buildHeaderPanel();
         buildMainPanel();
         buildMenuPanel();
 
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(20, 20, 20, 20);
+
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1;
+        gbc.weighty = 0;
+        gbc.insets = new Insets(20, 20, 10, 20);
+        add(headerPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
         gbc.weightx = 0;
         gbc.weighty = 1;
-        gbc.gridheight = 2;
+        gbc.insets = new Insets(0, 20, 20, 10);
         add(menuPanel, gbc);
 
-        gbc.insets = new Insets(20, 0, 20, 20);
         gbc.gridx = 1;
         gbc.gridy = 1;
+        gbc.weightx = 1;
         gbc.weighty = 1;
-        gbc.weightx = 0.8;
+        gbc.insets = new Insets(0, 0, 20, 20);
         add(mainPanel, gbc);
 
         setVisible(true);
+    }
+
+    private void buildHeaderPanel() {
+        headerPanel = new HeaderPanel();
     }
 
     private void buildMainPanel() {
@@ -51,12 +64,10 @@ public class HomeWindow extends JFrame {
 
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(mainPanel);
-        menuPanel.setPreferredSize(new Dimension(180, 0));
-        menuPanel.setMinimumSize(new Dimension(180, 0));
     }
 
     // Remover
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) {
         new HomeWindow();
     }
 }

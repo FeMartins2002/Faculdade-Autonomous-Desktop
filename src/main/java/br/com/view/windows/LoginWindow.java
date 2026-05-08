@@ -2,6 +2,8 @@ package br.com.view.windows;
 
 import br.com.controllers.ManagerController;
 import br.com.dtos.requests.manager.LoginDTO;
+import br.com.exceptions.ApiException;
+import br.com.exceptions.CommunicationException;
 import br.com.view.builders.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -145,6 +147,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 
     private void buildUserField() {
         userField = new TextFieldBuilder()
+                .required(true, null)
                 .size(300, 30)
                 .fontSize(15)
                 .build();
@@ -161,6 +164,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 
     private void buildPasswordField() {
         passwordField = passwordField = new PasswordFieldBuilder()
+                .required(true)
                 .size(300, 30)
                 .fontSize(15)
                 .build();
@@ -215,14 +219,17 @@ public class LoginWindow extends JFrame implements ActionListener {
 
     private void validateCredencials(LoginDTO dto) {
         try {
-            if(controller.login(dto)) {
+            if (controller.login(dto)) {
                 new HomeWindow();
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        } catch (ApiException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+        } catch (CommunicationException e) {
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(),
+                    "Inválido",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }

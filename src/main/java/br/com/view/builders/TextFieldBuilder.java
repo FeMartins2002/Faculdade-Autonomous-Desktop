@@ -60,6 +60,46 @@ public class TextFieldBuilder {
         return this;
     }
 
+    public TextFieldBuilder required(boolean required, java.util.function.Predicate<String> validator) {
+        if (required) {
+            Border redBorder = BorderFactory.createLineBorder(Color.RED, 2);
+            Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 2);
+
+            field.setBorder(redBorder);
+
+            field.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+                private void updateBorder() {
+                    String text = field.getText().trim();
+
+                    boolean valid;
+                    if (validator != null) {
+                        valid = validator.test(text);
+                    } else {
+                        valid = !text.isEmpty();
+                    }
+
+                    field.setBorder(valid ? greenBorder : redBorder);
+                }
+
+                @Override
+                public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+
+                @Override
+                public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+
+                @Override
+                public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                    updateBorder();
+                }
+            });
+        }
+        return this;
+    }
+
     public JTextField build() {
         return field;
     }

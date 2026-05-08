@@ -13,7 +13,10 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     public MenuPanel(MainPanel panel) {
         this.panel = panel;
+
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        setPreferredSize(new Dimension(180, 0));
+        setMinimumSize(new Dimension(180, 0));
         buildButtons();
     }
 
@@ -38,7 +41,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     }
 
     private void buildButtonStores() {
-        stores = new ButtonBuilder("Stores")
+        stores = new ButtonBuilder("Lojas")
                 .build();
         stores.addActionListener(this);
         add(stores);

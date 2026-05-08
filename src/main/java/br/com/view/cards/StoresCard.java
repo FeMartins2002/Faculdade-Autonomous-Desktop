@@ -28,8 +28,8 @@ public class StoresCard extends JPanel implements ActionListener {
         formatter = new TableFormatter();
         this.controller = controller;
 
-        setBackground(new Color(21, 32, 43));
         setLayout(new GridBagLayout());
+        setBackground(new Color(21, 32, 43));
         GridBagConstraints gbc = new GridBagConstraints();
 
         buildComponents();
