@@ -7,7 +7,6 @@ import br.com.dtos.requests.manager.LoginDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ManagerService {
-    private Session session;
     private final ManagerClient client;
     private static final ObjectMapper mapper = new ObjectMapper();
 

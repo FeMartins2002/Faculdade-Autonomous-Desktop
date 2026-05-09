@@ -18,12 +18,9 @@ public class ButtonBuilder {
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setBackground(null);
         button.setOpaque(false);
+        button.setToolTipText("Botão");
+        button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
-        //button.setContentAreaFilled(false);
-        //button.setBorderPainted(false);
-        //button.setFocusPainted(false);
-        //button.setContentAreaFilled(true);
     }
 
     public ButtonBuilder textColor(Color color) {
@@ -70,6 +67,11 @@ public class ButtonBuilder {
 
     public ButtonBuilder opaque(boolean opaque) {
         button.setOpaque(opaque);
+        return this;
+    }
+
+    public ButtonBuilder tooltip(String text) {
+        button.setToolTipText(text);
         return this;
     }
 

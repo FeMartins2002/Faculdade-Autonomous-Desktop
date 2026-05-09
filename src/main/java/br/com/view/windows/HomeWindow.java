@@ -24,32 +24,7 @@ public class HomeWindow extends JFrame {
         buildHeaderPanel();
         buildMainPanel();
         buildMenuPanel();
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.weightx = 1;
-        gbc.weighty = 0;
-        gbc.insets = new Insets(20, 20, 10, 20);
-        add(headerPanel, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.weightx = 0;
-        gbc.weighty = 1;
-        gbc.insets = new Insets(0, 20, 20, 10);
-        add(menuPanel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.insets = new Insets(0, 0, 20, 20);
-        add(mainPanel, gbc);
+        organizeComponents();
 
         setVisible(true);
     }
@@ -64,6 +39,35 @@ public class HomeWindow extends JFrame {
 
     private void buildMenuPanel() {
         menuPanel = new MenuPanel(mainPanel);
+    }
+
+    private void organizeComponents() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+
+        gbc.insets = new Insets(0, 0, 10, 10);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weighty = 0;
+        gbc.weightx = 0.8;
+        gbc.gridheight = 1;
+        add(headerPanel, gbc);
+
+        gbc.insets = new Insets(0, 0, 0, 10);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 1;
+        gbc.gridheight = 2;
+        add(menuPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(0, 0, 20, 20);
+        add(mainPanel, gbc);
     }
 
     // Remover

@@ -6,8 +6,6 @@ import br.com.exceptions.ApiException;
 import br.com.exceptions.CommunicationException;
 import br.com.view.builders.*;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -188,10 +186,10 @@ public class LoginWindow extends JFrame implements ActionListener {
 
     private void buildLogin() {
         login = new ButtonBuilder("Entrar")
-                .textColor(Color.white)
+                .textColor(Color.black)
                 .fontSize(15)
                 .size(300, 30)
-                .background(new Color(39, 174, 96))
+                .background(new Color(0, 179, 0))
                 .opaque(true)
                 .build();
     }
