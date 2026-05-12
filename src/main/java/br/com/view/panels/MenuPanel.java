@@ -2,6 +2,7 @@ package br.com.view.panels;
 
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
+import br.com.view.windows.TermsWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -184,7 +185,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         }
 
         if (click.getSource() == terms) {
-            System.out.println("Clicou em Termos de Uso");
+            new TermsWindow();
         }
 
         if (click.getSource() == logout) {
