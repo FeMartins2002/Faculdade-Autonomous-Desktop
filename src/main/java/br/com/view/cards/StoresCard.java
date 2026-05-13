@@ -4,6 +4,7 @@ import br.com.controllers.StoreController;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.builders.TextFieldBuilder;
+import br.com.view.forms.StoreForm;
 import br.com.view.utilities.TableFiltering;
 import br.com.view.utilities.TableFormatter;
 
@@ -232,7 +233,13 @@ public class StoresCard extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent click) {
+        if(click.getSource() == addButton) {
+            new StoreForm(controller, refreshButton);
+        }
 
+        if(click.getSource() == refreshButton) {
+            loadTable();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package br.com.clients;
 
 import br.com.dtos.requests.freelancer.CreateFreelancerDTO;
+import br.com.dtos.responses.FreelancerOption;
 import br.com.entities.Freelancer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,5 +22,9 @@ public class FreelancerClient extends BaseClient {
 
     public List<Freelancer> findInactives() {
         return get(FREELANCER_INACTIVES, new TypeReference<List<Freelancer>>() {});
+    }
+
+    public List<FreelancerOption> findOptions() {
+        return get(FREELANCER_OPTIONS, new TypeReference<List<FreelancerOption>>() {});
     }
 }

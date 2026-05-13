@@ -1,10 +1,13 @@
 package br.com.view.cards;
 
+import br.com.controllers.FreelancerController;
 import br.com.controllers.ScaleController;
+import br.com.controllers.StoreController;
 import br.com.enums.ScaleStatus;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.builders.TextFieldBuilder;
+import br.com.view.forms.ScaleForm;
 import br.com.view.utilities.TableFiltering;
 import br.com.view.utilities.TableFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,17 +23,21 @@ public class ScalesCard extends JPanel implements ActionListener {
     private JTextField searchBar;
     private JPanel buttonsPanel;
     private JButton addButton, editButton, completedButton, cancelledButton, refreshButton;
-    private ScaleController controller;
+    private ScaleController scaleController;
+    private StoreController storeController;
+    private FreelancerController freelancerController;
     private TableFiltering filtering;
     private TableFormatter formatter;
     private DefaultTableModel model;
     private JScrollPane scroll;
     private JTable table = new JTable();
 
-    public ScalesCard(ScaleController controller) {
+    public ScalesCard(ScaleController controller, FreelancerController freelancerController, StoreController storeController) {
         filtering = new TableFiltering();
         formatter = new TableFormatter();
-        this.controller = controller;
+        this.scaleController = controller;
+        this.storeController = storeController;
+        this.freelancerController = freelancerController;
 
         setLayout(new GridBagLayout());
         setBackground(new Color(21, 32, 43));
@@ -147,7 +154,7 @@ public class ScalesCard extends JPanel implements ActionListener {
 
     private void setUpModel() {
         try {
-            model = controller.findByStatus(ScaleStatus.CRIADO);
+            model = scaleController.findByStatus(ScaleStatus.CRIADO);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -252,6 +259,10 @@ public class ScalesCard extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent click) {
         if(click.getSource() == refreshButton) {
             loadTable();
+        }
+
+        if(click.getSource() == addButton) {
+            new ScaleForm(freelancerController, storeController, refreshButton);
         }
     }
 }

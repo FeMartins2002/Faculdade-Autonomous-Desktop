@@ -1,16 +1,20 @@
 package br.com.services;
 
 import br.com.clients.StoreClient;
+import br.com.configurations.Session;
 import br.com.dtos.requests.store.CreateStoreDTO;
 
+import br.com.dtos.responses.StoreOption;
 import br.com.entities.Store;
 import br.com.services.utilities.TableModelConverter;
 
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 public class StoreService {
     private StoreClient client;
     private TableModelConverter converter;
+    private List<StoreOption> storesOptions;
 
     public StoreService(StoreClient client, TableModelConverter converter) {
         this.client = client;
@@ -20,12 +24,30 @@ public class StoreService {
     public boolean createStore(CreateStoreDTO dto) {
         validateStore(dto);
 
+        // Correto
+        //dto.setManagerId(Session.getManagerLogged().getId());
+
+        // Remover depois
+        dto.setManagerId(1L);
+
         Store created = client.createStore(dto);
         return created != null && created.getId() != null;
     }
 
     public DefaultTableModel findAll() {
         return converter.createStoreModel(client.findAll());
+    }
+
+    public String[] findOptions() {
+        storesOptions = client.findOptions();
+
+        String[] options = new String[storesOptions.size()];
+
+        for (int i = 0; i < options.length; i++) {
+            options[i] = storesOptions.get(i).getName();
+        }
+
+        return options;
     }
 
     private void validateStore(CreateStoreDTO dto) {

@@ -11,10 +11,10 @@ public class DateFieldBuilder {
     public DateFieldBuilder() {
         this.field = new JFormattedTextField(maskFormatter());
 
-        field.setBackground(Color.gray);
+        field.setBackground(Color.WHITE);
         field.setHorizontalAlignment(SwingConstants.CENTER);
-        field.setPreferredSize(new Dimension(100, 30));
-        field.setFont(new Font("Arial", Font.PLAIN, 12));
+        field.setPreferredSize(new Dimension(100, 38));
+        field.setFont(new Font("Arial", Font.PLAIN, 15));
         field.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         field.setOpaque(true);
     }

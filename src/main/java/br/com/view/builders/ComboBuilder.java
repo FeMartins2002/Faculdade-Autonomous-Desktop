@@ -11,7 +11,7 @@ public class ComboBuilder {
         comboBox = new JComboBox<>(options);
 
         comboBox.setPreferredSize(new Dimension(300, 40));
-        comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
+        comboBox.setFont(new Font("Arial", Font.PLAIN, 15));
         comboBox.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
