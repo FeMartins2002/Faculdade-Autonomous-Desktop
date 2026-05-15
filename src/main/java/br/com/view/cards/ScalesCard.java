@@ -32,12 +32,10 @@ public class ScalesCard extends JPanel implements ActionListener {
     private JScrollPane scroll;
     private JTable table = new JTable();
 
-    public ScalesCard(ScaleController controller, FreelancerController freelancerController, StoreController storeController) {
+    public ScalesCard(ScaleController controller) {
         filtering = new TableFiltering();
         formatter = new TableFormatter();
         this.scaleController = controller;
-        this.storeController = storeController;
-        this.freelancerController = freelancerController;
 
         setLayout(new GridBagLayout());
         setBackground(new Color(21, 32, 43));
@@ -262,7 +260,7 @@ public class ScalesCard extends JPanel implements ActionListener {
         }
 
         if(click.getSource() == addButton) {
-            new ScaleForm(freelancerController, storeController, refreshButton);
+            new ScaleForm(scaleController, refreshButton);
         }
     }
 }

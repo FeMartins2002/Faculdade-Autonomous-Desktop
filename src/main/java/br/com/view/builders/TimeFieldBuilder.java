@@ -5,63 +5,63 @@ import javax.swing.border.Border;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 
-public class DateFieldBuilder {
+public class TimeFieldBuilder {
     private JFormattedTextField field;
 
-    public DateFieldBuilder() {
+    public TimeFieldBuilder() {
         this.field = new JFormattedTextField(maskFormatter());
 
         field.setBackground(Color.WHITE);
         field.setHorizontalAlignment(SwingConstants.CENTER);
-        field.setPreferredSize(new Dimension(100, 38));
+        field.setPreferredSize(new Dimension(80, 38));
         field.setFont(new Font("Arial", Font.PLAIN, 15));
         field.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         field.setOpaque(true);
     }
 
-    public DateFieldBuilder background(Color color) {
+    public TimeFieldBuilder background(Color color) {
         field.setBackground(color);
         return this;
     }
 
-    public DateFieldBuilder align(int alignment) {
+    public TimeFieldBuilder align(int alignment) {
         field.setHorizontalAlignment(alignment);
         return this;
     }
 
-    public DateFieldBuilder size(int width, int height) {
+    public TimeFieldBuilder size(int width, int height) {
         field.setPreferredSize(new Dimension(width, height));
         return this;
     }
 
-    public DateFieldBuilder textFont(Font font) {
+    public TimeFieldBuilder textFont(Font font) {
         field.setFont(font);
         return this;
     }
 
-    public DateFieldBuilder fontType(String type) {
+    public TimeFieldBuilder fontType(String type) {
         Font current = field.getFont();
         field.setFont(new Font(type, current.getStyle(), current.getSize()));
         return this;
     }
 
-    public DateFieldBuilder fontSize(int size) {
+    public TimeFieldBuilder fontSize(int size) {
         Font current = field.getFont();
         field.setFont(new Font(current.getName(), current.getStyle(), size));
         return this;
     }
 
-    public DateFieldBuilder border(Border border) {
+    public TimeFieldBuilder border(Border border) {
         field.setBorder(border);
         return this;
     }
 
-    public DateFieldBuilder opaque(boolean opaque) {
+    public TimeFieldBuilder opaque(boolean opaque) {
         field.setOpaque(opaque);
         return this;
     }
 
-    public DateFieldBuilder required(boolean required, java.util.function.Predicate<String> validator) {
+    public TimeFieldBuilder required(boolean required, java.util.function.Predicate<String> validator) {
         if (required) {
             Border redBorder = BorderFactory.createLineBorder(Color.RED, 2);
             Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 2);
@@ -107,7 +107,7 @@ public class DateFieldBuilder {
         MaskFormatter mask = null;
 
         try {
-            mask = new MaskFormatter("##/##/####");
+            mask = new MaskFormatter("##:##");
             mask.setPlaceholderCharacter(' ');
         } catch (Exception error) {
             error.printStackTrace();

@@ -2,14 +2,21 @@ package br.com.dtos.requests.scale;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class CreateScaleDTO {
     private Long managerId;
     private double scaleValue;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime scaleDateTime;
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private LocalDate scaleDate;
+
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime startTime;
+
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime endTime;
 
     private Long freelancerId;
     private Long storeId;
@@ -18,10 +25,11 @@ public class CreateScaleDTO {
 
     }
 
-    public CreateScaleDTO(Long managerId, double scaleValue, LocalDateTime scaleDateTime, Long freelancerId, Long storeId) {
-        this.managerId = managerId;
+    public CreateScaleDTO(double scaleValue, LocalDate scaleDate, LocalTime startTime, LocalTime endTime, Long freelancerId, Long storeId) {
         this.scaleValue = scaleValue;
-        this.scaleDateTime = scaleDateTime;
+        this.scaleDate = scaleDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.freelancerId = freelancerId;
         this.storeId = storeId;
     }
@@ -42,12 +50,28 @@ public class CreateScaleDTO {
         this.scaleValue = scaleValue;
     }
 
-    public LocalDateTime getScaleDateTime() {
-        return scaleDateTime;
+    public LocalDate getScaleDate() {
+        return scaleDate;
     }
 
-    public void setScaleDateTime(LocalDateTime scaleDateTime) {
-        this.scaleDateTime = scaleDateTime;
+    public void setScaleDate(LocalDate scaleDate) {
+        this.scaleDate = scaleDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     public Long getFreelancerId() {
@@ -64,5 +88,18 @@ public class CreateScaleDTO {
 
     public void setStoreId(Long storeId) {
         this.storeId = storeId;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateScaleDTO{" +
+                "managerId=" + managerId +
+                ", scaleValue=" + scaleValue +
+                ", scaleDate=" + scaleDate +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", freelancerId=" + freelancerId +
+                ", storeId=" + storeId +
+                '}';
     }
 }

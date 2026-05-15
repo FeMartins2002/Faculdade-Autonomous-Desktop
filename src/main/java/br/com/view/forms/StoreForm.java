@@ -82,6 +82,7 @@ public class StoreForm extends JFrame implements ActionListener {
 
     private void buildSubmitButton() {
         submit = new ButtonBuilder("Salvar")
+                .tooltip("Salvar Loja")
                 .background(new Color(46, 204, 113))
                 .size(250, 40)
                 .opaque(true)

@@ -44,15 +44,15 @@ public class TableModelConverter {
     }
 
     public DefaultTableModel createScaleModel(List<Scale> scales) {
-        String[] columns = {"Status", "Valor", "Data", "Freelancer", "Gestor", "Loja", "Entrada", "Saida"};
+        String[] columns = {"Data", "Entrada", "Saída", "Freelancer", "Loja", "Valor", "Ponto de Entrada", "Ponto de Saída"};
 
         return buildModel(scales, columns, s -> new Object[]{
-                s.getScaleStatus(),
-                s.getScaleValue(),
-                s.getScaleDateTime(),
+                s.getScaleDate(),
+                s.getStartTime(),
+                s.getEndTime(),
                 s.getFreelancerName(),
-                s.getManagerName(),
                 s.getStoreName(),
+                s.getScaleValue(),
                 getSafePoint(s, 0),
                 getSafePoint(s, 1)
         });

@@ -43,7 +43,7 @@ public class MainPanel extends JPanel {
     }
 
     private void buildScalesPanel() {
-        scalesPanel = new ScalesCard(scaleConfig.getController(), freelancerConfig.getController(), storeConfig.getController());
+        scalesPanel = new ScalesCard(scaleConfig.getController());
         add(scalesPanel, "scalesCard");
     }
 

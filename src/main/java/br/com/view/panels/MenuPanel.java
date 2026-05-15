@@ -1,5 +1,6 @@
 package br.com.view.panels;
 
+import br.com.configurations.Session;
 import br.com.view.builders.ButtonBuilder;
 import br.com.view.builders.LabelBuilder;
 import br.com.view.windows.TermsWindow;
@@ -189,7 +190,8 @@ public class MenuPanel extends JPanel implements ActionListener {
         }
 
         if (click.getSource() == logout) {
-            System.out.println("Clicou em Sair");
+            Session.logout();
+            System.exit(0);
         }
     }
 }

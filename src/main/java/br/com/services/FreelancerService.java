@@ -4,17 +4,14 @@ import br.com.clients.FreelancerClient;
 import br.com.configurations.Session;
 import br.com.dtos.requests.freelancer.CreateFreelancerDTO;
 
-import br.com.dtos.responses.FreelancerOption;
 import br.com.entities.Freelancer;
 import br.com.services.utilities.TableModelConverter;
 
 import javax.swing.table.DefaultTableModel;
-import java.util.List;
 
 public class FreelancerService {
     private FreelancerClient client;
     private TableModelConverter converter;
-    private List<FreelancerOption> freelancersOptions;
 
     public FreelancerService(FreelancerClient client, TableModelConverter converter) {
         this.client = client;
@@ -42,24 +39,12 @@ public class FreelancerService {
         return converter.createFreelancerModel(client.findInactives());
     }
 
-    public String[] findOptions() {
-        freelancersOptions = client.findOptions();
-
-        String[] options = new String[freelancersOptions.size()];
-
-        for (int i = 0; i < freelancersOptions.size(); i++) {
-            options[i] = freelancersOptions.get(i).getName();
-        }
-
-        return options;
-    }
-
     private void validateFreelancer(CreateFreelancerDTO dto) {
         if (dto == null) {
             throw new IllegalArgumentException("Freelancer não pode ser nulo");
         }
 
-        if (dto.getCpf() == null || dto.getCpf().isBlank() || dto.getCpf().length() != 11) {
+        if (dto.getCpf() == null || dto.getCpf().isBlank()) {
             throw new IllegalArgumentException("CPF inválido");
         }
 

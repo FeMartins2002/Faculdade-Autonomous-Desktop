@@ -155,6 +155,7 @@ public class FreelancerForm extends JFrame implements ActionListener {
 
     private void buildSubmitButton() {
         submit = new ButtonBuilder("Salvar")
+                .tooltip("Salvar Freelancer")
                 .background(new Color(46, 204, 113))
                 .size(250, 40)
                 .opaque(true)

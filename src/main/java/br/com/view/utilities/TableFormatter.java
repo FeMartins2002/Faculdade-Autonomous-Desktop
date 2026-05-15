@@ -55,7 +55,7 @@ public class TableFormatter {
                 setHorizontalAlignment(JLabel.CENTER);
 
                 if (!isSelected) {
-                    component.setBackground(row % 2 == 0 ? Color.WHITE : new Color(245, 245, 245));
+                    component.setBackground(row % 2 == 0 ? Color.WHITE : new Color(225, 225, 225));
                 }
 
                 return component;

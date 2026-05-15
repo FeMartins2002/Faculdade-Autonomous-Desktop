@@ -2,14 +2,17 @@ package br.com.entities;
 
 import br.com.enums.ScaleStatus;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Scale {
     private Long id;
     private ScaleStatus scaleStatus;
     private double scaleValue;
-    private LocalDateTime scaleDateTime;
+    private LocalDate scaleDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private String scaleObservation;
     private String freelancerName;
     private String managerName;
@@ -20,11 +23,13 @@ public class Scale {
 
     }
 
-    public Scale(Long id, ScaleStatus scaleStatus, double scaleValue, LocalDateTime scaleDateTime, String scaleObservation, String freelancerName, String managerName, String storeName, List<Point> points) {
+    public Scale(Long id, ScaleStatus scaleStatus, double scaleValue, LocalDate scaleDate, LocalTime startTime, LocalTime endTime, String scaleObservation, String freelancerName, String managerName, String storeName, List<Point> points) {
         this.id = id;
         this.scaleStatus = scaleStatus;
         this.scaleValue = scaleValue;
-        this.scaleDateTime = scaleDateTime;
+        this.scaleDate = scaleDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.scaleObservation = scaleObservation;
         this.freelancerName = freelancerName;
         this.managerName = managerName;
@@ -56,12 +61,28 @@ public class Scale {
         this.scaleValue = scaleValue;
     }
 
-    public LocalDateTime getScaleDateTime() {
-        return scaleDateTime;
+    public LocalDate getScaleDate() {
+        return scaleDate;
     }
 
-    public void setScaleDateTime(LocalDateTime scaleDateTime) {
-        this.scaleDateTime = scaleDateTime;
+    public void setScaleDate(LocalDate scaleDate) {
+        this.scaleDate = scaleDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     public String getScaleObservation() {
@@ -106,16 +127,18 @@ public class Scale {
 
     @Override
     public String toString() {
-        return "ScaleResponseDTO{" +
+        return "Scale{" +
                 "id=" + id +
                 ", scaleStatus=" + scaleStatus +
                 ", scaleValue=" + scaleValue +
-                ", scaleDateTime=" + scaleDateTime +
+                ", scaleDate=" + scaleDate +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 ", scaleObservation='" + scaleObservation + '\'' +
                 ", freelancerName='" + freelancerName + '\'' +
                 ", managerName='" + managerName + '\'' +
                 ", storeName='" + storeName + '\'' +
-                ", points=" + points.toString() +
+                ", points=" + points +
                 '}';
     }
 }
