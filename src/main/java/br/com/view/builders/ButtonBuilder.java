@@ -1,0 +1,87 @@
+package br.com.view.builders;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
+public class ButtonBuilder {
+    private JButton button;
+
+    public ButtonBuilder(String text) {
+        this.button = new JButton();
+
+        button.setText(text);
+        button.setForeground(Color.BLACK);
+        button.setFont(new Font("Arial", Font.PLAIN, 12));
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setPreferredSize(new Dimension(100, 50));
+        button.setHorizontalAlignment(SwingConstants.CENTER);
+        button.setBackground(null);
+        button.setOpaque(false);
+        button.setToolTipText("Botão");
+        button.setFocusPainted(false);
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    public ButtonBuilder textColor(Color color) {
+        button.setForeground(color);
+        return this;
+    }
+
+    public ButtonBuilder textFont(Font font) {
+        button.setFont(font);
+        return this;
+    }
+
+    public ButtonBuilder fontType(String type) {
+        Font current = button.getFont();
+        button.setFont(new Font(type, current.getStyle(), current.getSize()));
+        return this;
+    }
+
+    public ButtonBuilder fontSize(int size) {
+        Font current = button.getFont();
+        button.setFont(new Font(current.getName(), current.getStyle(), size));
+        return this;
+    }
+
+    public ButtonBuilder border(Border border) {
+        button.setBorder(border);
+        return this;
+    }
+
+    public ButtonBuilder size(int width, int height) {
+        button.setPreferredSize(new Dimension(width, height));
+        return this;
+    }
+
+    public ButtonBuilder align(int alignment) {
+        button.setHorizontalAlignment(alignment);
+        return this;
+    }
+
+    public ButtonBuilder background(Color color) {
+        button.setBackground(color);
+        return this;
+    }
+
+    public ButtonBuilder opaque(boolean opaque) {
+        button.setOpaque(opaque);
+        return this;
+    }
+
+    public ButtonBuilder tooltip(String text) {
+        button.setToolTipText(text);
+        return this;
+    }
+
+    public JButton build() {
+        return button;
+    }
+}
