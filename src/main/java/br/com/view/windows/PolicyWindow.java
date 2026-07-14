@@ -119,7 +119,7 @@ public class PolicyWindow extends JFrame implements ActionListener {
                 + "1. SOBRE O AUTONOMOUS\n\n"
                 + "O Autonomous é um sistema desenvolvido para auxiliar "
                 + "na gestão de freelancers, escalas, horários, pagamentos "
-                + "e organização operacional da Sorveteria Bachir.\n\n"
+                + "e organização operacional de um Sorveteria.\n\n"
 
                 + "2. DADOS COLETADOS\n\n"
                 + "O sistema poderá armazenar informações fornecidas "
@@ -171,9 +171,9 @@ public class PolicyWindow extends JFrame implements ActionListener {
                 + "10. CONSIDERAÇÕES FINAIS\n\n"
                 + "O Autonomous possui finalidade acadêmica e educacional, "
                 + "sendo desenvolvido como Projeto Integrador voltado "
-                + "à gestão de freelancers da Sorveteria Bachir.\n\n"
+                + "à gestão de freelancers de uma Sorveteria.\n\n"
 
-                + "Última atualização: Maio de 2026.";
+                + "Última atualização: Julho de 2026.";
     }
 
     @Override

@@ -73,9 +73,4 @@ public class HomeWindow extends JFrame {
         gbc.insets = new Insets(0, 0, 20, 20);
         add(mainPanel, gbc);
     }
-
-    // Remover
-    public static void main(String[] args) {
-        new HomeWindow();
-    }
 }
